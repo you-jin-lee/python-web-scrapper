@@ -26,4 +26,8 @@ def extract_indeed_jobs(last_page):
     for page in range(last_page):
         result = requests.get(f"{URL}&start={page*LIMIT}")
         soup = BeautifulSoup(result.text, 'html.parser')
+        results = soup.find_all("div",{"class": "jobsearch-SerpJobCard"})
+        for result in results:
+            title = result.find("h2", {"class":"title"}).find("a")["title"] # 요소의 속성 접근 방식 = 배열 요소 접근 방식
+            print(title)
     return jobs

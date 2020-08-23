@@ -29,5 +29,12 @@ def extract_indeed_jobs(last_page):
         results = soup.find_all("div",{"class": "jobsearch-SerpJobCard"})
         for result in results:
             title = result.find("h2", {"class":"title"}).find("a")["title"] # 요소의 속성 접근 방식 = 배열 요소 접근 방식
-            print(title)
+            company = result.find("span", {"class": "company"})
+            company_anchor = company.find("a")
+            if company_anchor is not None:
+                company = str(company_anchor.string)
+            else:
+                company = str(company.string)
+            company = company.strip()
+            print(company)
     return jobs

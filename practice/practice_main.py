@@ -1,9 +1,5 @@
-import requests
-from bs4 import BeautifulSoup
-from practice_indeed import extract_indeed_page, extract_indeed_jobs
+from practice_indeed import get_jobs as get_indeed_jobs
+from practice_so import get_jobs as get_so_jobs
 
-indeed_page = extract_indeed_page()
-
-indeed_jobs = extract_indeed_jobs(indeed_page)
-
-print(indeed_jobs[0:1])
+#indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()

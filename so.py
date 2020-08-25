@@ -17,7 +17,7 @@ def extract_job(html):
     company = company.get_text(strip=True)
     location = location.get_text(strip=True)
     print(company, location)
-    return {'title': title}
+    return {'title': title, 'company': company, 'location': location}
     
 
 def extract_jobs(last_page):

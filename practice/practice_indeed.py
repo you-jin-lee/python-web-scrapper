@@ -22,15 +22,19 @@ def get_last_page():
     return max_page
 
 def extract_job(html):
-    title = html.find("h2", {"class": "title"}).find("a")["title"]
-    anchor_company = html.find("span", {"class": "company"})
-    if anchor_company.find("a") is not None:
-        company = anchor_company.find("a").string
+    title = html.find("h2", {"class":"title"}).find("a")["title"] # 요소의 속성 접근 방식 = 배열 요소 접근 방식
+    company = html.find("span", {"class": "company"})
+    if company:
+        company_anchor = company.find("a")
+        if company_anchor is not None:
+            company = str(company_anchor.string)
+        else:
+            company = str(company.string)
+        company = company.strip()
     else:
-        company = anchor_company.string
-    company = company.strip()
+        company = None
     location = html.find("div", {"class": "recJobLoc"})['data-rc-loc']
-    job_id = html['data-jk']
+    job_id = html["data-jk"]
     return {'title': title, 'company': company, 'location': location, 'link': f'https://www.indeed.com/viewjob?jk={job_id}'}
 
     
